@@ -16,13 +16,23 @@ pipeline {
       }
     }
     stage('Terraform') {
-      steps {
-        build(job: 'tr-acceptance', propagate: true, quietPeriod: 10, wait: true)
+      parallel {
+        stage('Terraform') {
+          steps {
+            addHtmlBadge 'Running Terraform Acceptance'
+          }
+        }
+        stage('') {
+          steps {
+            build(job: 'tr-acceptance-github', propagate: true, quietPeriod: 10, wait: true)
+          }
+        }
       }
     }
     stage('Report') {
       steps {
         addHtmlBadge 'Terraform Acceptance Passed - !00%'
+        emailext(subject: 'Terraform Acceptance 4.0 Passed 100%', body: 'Terraform Acceptance 4.0 Passed 100%', to: 'edsel@aviatrix.com')
       }
     }
   }

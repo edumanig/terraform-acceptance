@@ -22,7 +22,7 @@ pipeline {
             addHtmlBadge 'Running Terraform Acceptance'
           }
         }
-        stage('') {
+        stage('tr-acceptance-github') {
           steps {
             build(job: 'tr-acceptance-github', propagate: true, quietPeriod: 10, wait: true)
           }
@@ -32,7 +32,7 @@ pipeline {
     stage('Report') {
       steps {
         addHtmlBadge 'Terraform Acceptance Passed - !00%'
-        emailext(subject: 'Terraform Acceptance 4.0 Passed 100%', body: 'Terraform Acceptance 4.0 Passed 100%', to: 'edsel@aviatrix.com')
+        emailext(subject: 'Terraform Acceptance 4.0 Passed 100%', body: 'Terraform Acceptance 4.0 Passed 100%', to: 'edsel@aviatrix.com, arvind@aviatrix.com')
       }
     }
   }

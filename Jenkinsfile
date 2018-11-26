@@ -31,7 +31,7 @@ pipeline {
     }
     stage('Report') {
       steps {
-        addHtmlBadge 'Terraform Acceptance Passed - !00%'
+        addHtmlBadge 'Terraform Acceptance Passed - 100%'
         emailext(subject: 'Terraform Acceptance 4.0 Passed 100%', body: 'Terraform Acceptance 4.0 Passed 100%', to: 'edsel@aviatrix.com, arvind@aviatrix.com')
       }
     }

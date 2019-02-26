@@ -5,7 +5,7 @@ pipeline {
       parallel {
         stage('Upgrade Controller') {
           steps {
-            addHtmlBadge 'Prepare controller to 4.0'
+            addHtmlBadge 'Prepare controller to 4.2'
           }
         }
         stage('upgrade_only') {
@@ -32,7 +32,7 @@ pipeline {
     stage('Report') {
       steps {
         addHtmlBadge 'Terraform Acceptance Passed - 100%'
-        emailext(subject: 'Terraform Acceptance 4.0 Passed 100%', body: 'Terraform Acceptance 4.0 Passed 100%', to: 'edsel@aviatrix.com, arvind@aviatrix.com')
+        emailext(subject: 'Terraform Acceptance 4.2 Passed 100%', body: 'Terraform Acceptance 4.0 Passed 100%', to: 'edsel@aviatrix.com, arvind@aviatrix.com')
       }
     }
   }
